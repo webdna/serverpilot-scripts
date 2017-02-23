@@ -6,6 +6,8 @@ blue="\e[34m"
 normal="\e[0m"
 error="${red}ERROR: ${normal}"
 
+nginx_conf_url="https://raw.githubusercontent.com/webdna/serverpilot-scripts/master/nginx.app.conf?token=TOKEN_PLACEHOLDER"
+
 run_all=false
 # === /Variables ===
 
@@ -20,13 +22,13 @@ function show_error()
 function show_notice()
 {
   msg=$1
-  printf "%b" "${green}${msg}\n"
+  printf "%b" "${green}${msg}${normal}\n"
 }
 
 function show_info()
 {
   msg=$1
-  printf "%b" "${blue}${msg}\n"
+  printf "%b" "${blue}${msg}${normal}\n"
 }
 # === /Functions ===
 
@@ -56,19 +58,39 @@ fi
 
 # === LEMP Stack ===
 if [[ $run_all = false ]]; then
-  echo -n "Create LEMP Stack (Nginx Only, No Apache)? (y/n): "
+  echo -n "Create LEMP Stack (Nginx Only, No Apache)? (y/n) [default: n] : "
   read lemp
 fi
 
 if [ "$lemp" = "y" ] || [ $run_all = true ]; then
   show_notice "Creating LEMP Stack..."
+  
+  echo -n "What is the appname? : "
+  read appname
+  if [ -n "$appname" ] && [ -e "/etc/nginx-sp/vhosts.d/${appname}.d" ]; then
+    
+    show_info "Backing up main conf file..."
+    app_vhost_dir = "/etc/nginx-sp/vhosts.d/${appname}.d"
+    (eval "mv ${app_vhost_dir}/main.conf ${app_vhost_dir}/main.conf.bak")
+    
+    show_info "Creating new nginx conf..."
+    wget -O nginx.app.conf $nginx_conf_url
+    (eval "mv nginx.app.conf ${app_vhost_dir}/main.custom.conf")
+    
+    show_info "Restarting nginx..."
+    service nginx-sp restart
+    
+  else
+    show_error "You must provide a valid appname"
+  fi
+  
   show_notice "Finished Creating LEMP Stack..."
 fi
 # === /LEMP Stack ===
 
 # === Imagick ===
 if [[ $run_all = false ]]; then
-  echo -n "Install Imagick? (y/n): "
+  echo -n "Install Imagick? (y/n) [default: n]: "
   read imagick
 fi
 
@@ -77,8 +99,8 @@ if [ "$imagick" = "y" ] || [ $run_all = true ]; then
   show_info "When asked for a prefix simply press enter."
   
   show_info "Installing Pacakges..."
-  apt-get install gcc make autoconf libc-dev pkg-config
-  apt-get install libmagickwand-dev
+  apt-get install -y gcc make autoconf libc-dev pkg-config
+  apt-get install -y libmagickwand-dev
   
   show_info "Pecl Installing Imagick..."
   (eval "pecl${php_version}-sp install imagick")
@@ -95,14 +117,14 @@ fi
 
 # === AutoMySQLBackup ===
 if [[ $run_all = false ]]; then
-  echo -n "Install AutoMySQLBackup? (y/n): "
+  echo -n "Install AutoMySQLBackup? (y/n) [default: n]: "
   read automysqlbackup
 fi
 
 if [ "$automysqlbackup" = "y" ] || [ $run_all = true ]; then
   show_notice "Installing AutoMySQLBackup..."
   
-  apt-get install automysqlbackup
+  apt-get install -y automysqlbackup
   
   show_notice "Finished Installing AutoMySQLBackup..."
 fi
@@ -110,7 +132,7 @@ fi
 
 # === Disable MySQL 5.7 Strict Mode ===
 if [[ $run_all = false ]]; then
-  echo -n "Disable MySQL Strict Mode? (y/n): "
+  echo -n "Disable MySQL Strict Mode? (y/n) [default: n]: "
   read mysql_strict
 fi
 
