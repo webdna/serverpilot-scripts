@@ -75,16 +75,21 @@ if [ "$lemp" = "y" ] || [ $run_all = true ]; then
   read appname
   if [ -n "$appname" ] && [ -e "/etc/nginx-sp/vhosts.d/${appname}.d" ]; then
     
-    show_info "Backing up main conf file..."
     app_vhost_dir="/etc/nginx-sp/vhosts.d/${appname}.d"
-    (eval "mv ${app_vhost_dir}/main.conf ${app_vhost_dir}/main.conf.bak")
     
-    show_info "Creating new nginx conf..."
-    wget -O nginx.app.conf $nginx_conf_url
-    (eval "mv nginx.app.conf ${app_vhost_dir}/main.custom.conf")
-    
-    show_info "Restarting nginx..."
-    service nginx-sp restart
+    if [[ -e "${app_vhost_dir}/main.custom.conf" ]]; then
+      show_warning "${appname} has already been customised. Skipping.."
+    else
+      show_info "Backing up main conf file..."
+      (eval "mv ${app_vhost_dir}/main.conf ${app_vhost_dir}/main.conf.bak")
+      
+      show_info "Creating new nginx conf..."
+      wget -O nginx.app.conf $nginx_conf_url
+      (eval "mv nginx.app.conf ${app_vhost_dir}/main.custom.conf")
+      
+      show_info "Restarting nginx..."
+      service nginx-sp restart
+    fi
     
   else
     show_error "You must provide a valid appname"
