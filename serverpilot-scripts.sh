@@ -19,6 +19,12 @@ function show_error()
   exit 1
 }
 
+function show_warning()
+{
+  msg=$1
+  printf "%b" "${red}${msg}${normal}\n"
+}
+
 function show_notice()
 {
   msg=$1
