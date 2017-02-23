@@ -55,7 +55,7 @@ fi
 # === /Get PHP Version ===
 
 # === LEMP Stack ===
-if [[ ! $run_all ]]; then
+if [[ $run_all = false ]]; then
   echo -n "Create LEMP Stack (Nginx Only, No Apache)? (y/n): "
   read lemp
 fi
@@ -67,7 +67,7 @@ fi
 # === /LEMP Stack ===
 
 # === Imagick ===
-if [[ ! $run_all ]]; then
+if [[ $run_all = false ]]; then
   echo -n "Install Imagick? (y/n): "
   read imagick
 fi
@@ -94,7 +94,7 @@ fi
 # === /Imagick ===
 
 # === AutoMySQLBackup ===
-if [[ ! $run_all ]]; then
+if [[ $run_all = false ]]; then
   echo -n "Install AutoMySQLBackup? (y/n): "
   read automysqlbackup
 fi
@@ -109,7 +109,7 @@ fi
 # === /AutoMySQLBackup ===
 
 # === Disable MySQL 5.7 Strict Mode ===
-if [[ ! $run_all ]]; then
+if [[ $run_all = false ]]; then
   echo -n "Disable MySQL Strict Mode? (y/n): "
   read mysql_strict
 fi
