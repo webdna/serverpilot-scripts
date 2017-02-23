@@ -38,4 +38,10 @@ https://serverpilot.io/community/articles/how-to-disable-strict-mode-in-mysql-5-
 
 ### Roadmap
 
+- [ ] Image optimisation libraries
+  - [ ] jpegoptim
+  - [ ] mozjpeg
+  - [ ] optipng
+  - [ ] pngquant
+  - [ ] tinypng
 - [ ] MariaDB Installation
