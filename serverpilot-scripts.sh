@@ -164,3 +164,32 @@ if [ "$mysql_strict" = "y" ] || [ $run_all = true ]; then
   show_notice "Finished Disabling MySQL Strict Mode..."
 fi
 # === /Disable MySQL 5.7 Strict Mode ===
+
+# === Image optimisation libraries ===
+if [[ $run_all = false ]]; then
+  echo -n "Install image optimisation libraries? (y/n) [default: n]: "
+  read imgopt
+fi
+
+if [ "$imgopt" = "y" ] || [ $run_all = true ]; then
+  show_notice "Installing image optimisation libraries..."
+  
+  # jpegoptim
+  show_notice "Installing jpegoptim..."
+  apt-get install -y jpegoptim
+
+  # optipng
+  show_notice "Installing optipng..."
+  apt-get install -y optipng
+  
+  # pngquant
+  show_notice "Installing pngquant..."
+  apt-get install -y pngquant
+  
+  # pngcrush
+  show_notice "Installing pngcrush..."
+  apt-get install -y pngcrush
+  
+  show_notice "FinishedInstalling image optimisation libraries..."
+fi
+# === /Image optimisation libraries ===
