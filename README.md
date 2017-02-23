@@ -9,7 +9,7 @@ A collection of scripts for setting up various items / running tasks on serverpi
 
 1. ssh into your serverpilot server e.g. `ssh serverpilot@YOUR.SERVER.IP.ADDRESS`
 1. Login as **root** `su` (important: do not skip)
-1. Retrieve script from GitHub `wget -O serverpilot-scripts.sh https://raw.githubusercontent.com/webdna/serverpilot-scripts/master/serverpilot-scripts.sh?token=AAQQ1a-TCn4FwzQpjFWmVLhOdfW-ul23ks5Yt-4zwA%3D%3D`
+1. Retrieve script from GitHub `wget -O serverpilot-scripts.sh https://raw.githubusercontent.com/webdna/serverpilot-scripts/master/serverpilot-scripts.sh`
 1. Make script executable `chmod +x serverpilot-scripts.sh`
 1. Run the script `./serverpilot-scripts.sh`
 1. The script will prompt asking you if you would like to run each part. If you just want to run everything simply run the script with the `--all` parameter e.g. `./serverpilot-scripts.sh --all`

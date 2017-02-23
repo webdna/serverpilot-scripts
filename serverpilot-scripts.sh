@@ -6,7 +6,7 @@ blue="\e[34m"
 normal="\e[0m"
 error="${red}ERROR: ${normal}"
 
-nginx_conf_url="https://raw.githubusercontent.com/webdna/serverpilot-scripts/master/nginx.app.conf?token=TOKEN_PLACEHOLDER"
+nginx_conf_url="https://raw.githubusercontent.com/webdna/serverpilot-scripts/master/nginx.app.conf"
 
 run_all=false
 # === /Variables ===
