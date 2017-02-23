@@ -70,7 +70,7 @@ if [ "$lemp" = "y" ] || [ $run_all = true ]; then
   if [ -n "$appname" ] && [ -e "/etc/nginx-sp/vhosts.d/${appname}.d" ]; then
     
     show_info "Backing up main conf file..."
-    app_vhost_dir = "/etc/nginx-sp/vhosts.d/${appname}.d"
+    app_vhost_dir="/etc/nginx-sp/vhosts.d/${appname}.d"
     (eval "mv ${app_vhost_dir}/main.conf ${app_vhost_dir}/main.conf.bak")
     
     show_info "Creating new nginx conf..."
