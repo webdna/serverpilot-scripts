@@ -35,3 +35,7 @@ https://serverpilot.io/community/articles/how-to-install-the-php-imagemagick-ext
 If your app was written for older versions of MySQL and is not compatible with strict SQL mode in MySQL 5.7, you can disable strict SQL mode. For example, apps such as WHMCS 6 and Craft 2 do not support strict SQL mode.
 
 https://serverpilot.io/community/articles/how-to-disable-strict-mode-in-mysql-5-7.html
+
+### Roadmap
+
+- [ ] MariaDB Installation
