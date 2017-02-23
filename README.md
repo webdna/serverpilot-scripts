@@ -44,5 +44,4 @@ https://serverpilot.io/community/articles/how-to-disable-strict-mode-in-mysql-5-
   - [ ] optipng
   - [ ] pngcrush
   - [ ] pngquant
-  - [ ] tinypng
 - [ ] MariaDB Installation
