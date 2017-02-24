@@ -117,7 +117,7 @@ if [ "$imagick" = "y" ] || [ $run_all = true ]; then
   (eval "pecl${php_version}-sp install imagick")
   
   show_info "Enabling Imagick Extension..."
-  bash -c "echo extension=imagick.so > /etc/phpX.Y-sp/conf.d/imagick.ini"
+  bash -c "echo extension=imagick.so > /etc/php${php_version}-sp/conf.d/imagick.ini"
   
   show_info "Restarting PHP FPM..."
   (eval "service php${php_version}-fpm-sp restart")
