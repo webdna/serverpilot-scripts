@@ -16,6 +16,12 @@ A collection of scripts for setting up various items / running tasks on serverpi
 
 ### Available Scripts
 
+- [LEMP Stack (Nginx Only, No Apache)](#lemp-stack-nginx-only-no-apache)
+- [AutoMySQLBackup](#automysqlbackup)
+- [Imagick](#imagick)
+- [Disable MySQL (5.7) Strict Mode](#disable-mysql-57-strict-mode)
+- [Password Protect](#password-protect)
+
 #### LEMP Stack (Nginx Only, No Apache)
 If your app doesn't utilize .htaccess files, it is possible to have Nginx interact directly with PHP-FPM and bypass Apache entirely.
 
