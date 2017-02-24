@@ -45,3 +45,4 @@ https://serverpilot.io/community/articles/how-to-disable-strict-mode-in-mysql-5-
   - [x] pngcrush
   - [x] pngquant
 - [ ] MariaDB Installation
+- [ ] Password protect apps
