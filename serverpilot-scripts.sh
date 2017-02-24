@@ -190,6 +190,10 @@ if [ "$imgopt" = "y" ] || [ $run_all = true ]; then
   show_info "Installing pngcrush..."
   apt-get install -y pngcrush
   
+  # gifsicle
+  show_info "Installing gifsicle..."
+  apt-get install -y gifsicle
+  
   show_notice "Finished Installing image optimisation libraries..."
 fi
 # === /Image optimisation libraries ===

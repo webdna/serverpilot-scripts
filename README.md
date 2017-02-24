@@ -20,6 +20,7 @@ A collection of scripts for setting up various items / running tasks on serverpi
 - [AutoMySQLBackup](#automysqlbackup)
 - [Imagick](#imagick)
 - [Disable MySQL (5.7) Strict Mode](#disable-mysql-57-strict-mode)
+- [Image Optimisation Libraries](#image-optimisation-libraries)
 - [Password Protect](#password-protect)
 
 #### LEMP Stack (Nginx Only, No Apache)
@@ -42,6 +43,15 @@ If your app was written for older versions of MySQL and is not compatible with s
 
 https://serverpilot.io/community/articles/how-to-disable-strict-mode-in-mysql-5-7.html
 
+#### Image Optimisation Libraries
+Installation of the following image optimisation libraries:
+
+- gifsicle
+- jpegoptim
+- optipng
+- pngcrush
+- pngquant
+
 #### Password Protect
 Ability to add Auth Basic to apps with in serverpilot. This is setup within the nginx app config so will work with both people using nginx + apache and nginx only
 
@@ -53,5 +63,6 @@ Ability to add Auth Basic to apps with in serverpilot. This is setup within the 
   - [x] optipng
   - [x] pngcrush
   - [x] pngquant
+  - [x] gisicle
 - [ ] MariaDB Installation
 - [x] Password protect apps
