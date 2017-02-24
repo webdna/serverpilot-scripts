@@ -36,6 +36,9 @@ If your app was written for older versions of MySQL and is not compatible with s
 
 https://serverpilot.io/community/articles/how-to-disable-strict-mode-in-mysql-5-7.html
 
+#### Password Protect
+Ability to add Auth Basic to apps with in serverpilot. This is setup within the nginx app config so will work with both people using nginx + apache and nginx only
+
 ### Roadmap
 
 - [ ] Image optimisation libraries
