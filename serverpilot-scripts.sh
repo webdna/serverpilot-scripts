@@ -175,21 +175,89 @@ if [ "$imgopt" = "y" ] || [ $run_all = true ]; then
   show_notice "Installing image optimisation libraries..."
   
   # jpegoptim
-  show_notice "Installing jpegoptim..."
+  show_info "Installing jpegoptim..."
   apt-get install -y jpegoptim
 
   # optipng
-  show_notice "Installing optipng..."
+  show_info "Installing optipng..."
   apt-get install -y optipng
   
   # pngquant
-  show_notice "Installing pngquant..."
+  show_info "Installing pngquant..."
   apt-get install -y pngquant
   
   # pngcrush
-  show_notice "Installing pngcrush..."
+  show_info "Installing pngcrush..."
   apt-get install -y pngcrush
   
-  show_notice "FinishedInstalling image optimisation libraries..."
+  show_notice "Finished Installing image optimisation libraries..."
 fi
 # === /Image optimisation libraries ===
+
+# === Password Protect App ===
+if [[ $run_all = false ]]; then
+  echo -n "Password protect app? (y/n) [default: n]: "
+  read pwd_protect
+fi
+
+if [ "$pwd_protect" = "y" ] || [ $run_all = true ]; then
+  show_notice "Starting Password protect app process..."
+  
+  echo -n "What is the appname of the app you would like to password? :"
+  read appname
+  
+  if [ -n "$appname" ] && [ -e "/etc/nginx-sp/vhosts.d/${appname}.d" ]; then
+    
+    # Get System User (normall "severpilot")
+    system_user_default="serverpilot"
+    echo -n "System user, the user from serverpilot that controls the app: [default: serverpilot]"
+    read system_user_input
+    system_user="${system_user_input:-$system_user_default}"
+    
+    # Get Title
+    pwd_title_default="Restricted Content"
+    echo -n "Title for password protect? [default: ${pwd_title_default}] "
+    read pwd_title_input
+    pwd_title="${pwd_title_input:-$pwd_title_default}"
+    
+    # Get Username
+    echo -n "Username: "
+    read pwd_username
+    if [[ ! -n "$pwd_username" ]]; then
+      show_error "You must supply a username"
+    fi
+        
+    # Create password file
+    show_info "Creating password file..."
+    pwd_dir="/srv/users/${system_user}/pwd/${appname}"
+    mkdir -p "${pwd_dir}"
+    pwd_path="${pwd_dir}/.htpasswd"
+    
+    if [[ ! -e "${pwd_path}" ]]; then
+      touch "${pwd_path}"
+    fi
+    
+    # Generate user / pass
+    (eval "htpasswd ${pwd_path} ${pwd_username}")
+    
+    nginx_pwd_conf="/etc/nginx-sp/vhosts.d/${appname}.d/password.conf"
+    if [[ ! -e "${nginx_pwd_conf}" ]]; then
+      show_info "Creating nginx password conf file..."
+      
+      auth_basic='auth_basic "'"${pwd_title}"'";'
+      auth_basic_user_file="auth_basic_user_file ${pwd_path};"
+      
+      touch "${nginx_pwd_conf}"
+      (echo $auth_basic >> $nginx_pwd_conf)
+      (eval "echo \"${auth_basic_user_file}\" >> ${nginx_pwd_conf}")
+    fi
+    
+    service nginx-sp restart
+        
+  else
+    show_info "${appname} not found."
+  fi
+  
+  show_notice "Finished Password protect app process..."
+fi
+# === /Password Protect App ===
