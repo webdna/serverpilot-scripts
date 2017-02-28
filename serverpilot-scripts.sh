@@ -7,6 +7,7 @@ normal="\e[0m"
 error="${red}ERROR: ${normal}"
 
 nginx_conf_url="https://raw.githubusercontent.com/webdna/serverpilot-scripts/master/nginx.app.conf"
+nginx_expires_conf_url="https://raw.githubusercontent.com/webdna/serverpilot-scripts/master/nginx.expires.conf"
 
 run_all=false
 # === /Variables ===
@@ -265,3 +266,38 @@ if [ "$pwd_protect" = "y" ] || [ $run_all = true ]; then
   show_notice "Finished Password protect app process..."
 fi
 # === /Password Protect App ===
+
+# === Expires Nginx Conf ===
+if [[ $run_all = false ]]; then
+  echo -n "Add expires Nginx conf? (y/n) [default: n] : "
+  read expires_nginx
+fi
+
+if [ "$expires_nginx" = "y" ] || [ $run_all = true ]; then
+  show_notice "Adding Expires Nginx Conf..."
+  
+  echo -n "What is the appname? : "
+  read appname
+  if [ -n "$appname" ] && [ -e "/etc/nginx-sp/vhosts.d/${appname}.d" ]; then
+    
+    app_vhost_dir="/etc/nginx-sp/vhosts.d/${appname}.d"
+    expires_conf_file="${app_vhost_dir}/expires.conf"
+    
+    if [[ -e "${expires_conf_filre}" ]]; then
+      show_warning "${appname} already has expires file. Skipping.."
+    else
+  
+      show_info "Creating expires nginx conf..."
+      (eval "wget -O ${expires_conf_file} ${nginx_expires_conf_url}")
+      
+      show_info "Restarting nginx..."
+      service nginx-sp restart
+    fi
+    
+  else
+    show_error "You must provide a valid appname"
+  fi
+  
+  show_notice "Finished Adding Expires Nginx Conf..."
+fi
+# === /Expires Nginx Conf ===
