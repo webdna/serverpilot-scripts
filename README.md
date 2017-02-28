@@ -10,7 +10,7 @@ A collection of scripts for setting up various items / running tasks on serverpi
 1. ssh into your serverpilot server e.g. `ssh serverpilot@YOUR.SERVER.IP.ADDRESS`
 1. Login as **root** `su` (important: do not skip)
 1. Run script from GitHub `bash <(curl -s https://raw.githubusercontent.com/webdna/serverpilot-scripts/master/serverpilot-scripts.sh)`
-1. The script will prompt asking you if you would like to run each part. If you just want to run everything simply run the script with the `--all` parameter e.g. `./serverpilot-scripts.sh --all`
+1. The script will prompt asking you if you would like to run each part as listed below.
 
 ### Available Scripts
 
@@ -20,6 +20,7 @@ A collection of scripts for setting up various items / running tasks on serverpi
 - [Disable MySQL (5.7) Strict Mode](#disable-mysql-57-strict-mode)
 - [Image Optimisation Libraries](#image-optimisation-libraries)
 - [Password Protect](#password-protect)
+- [Nginx Expires Config](#nginx-expires-config)
 
 #### LEMP Stack (Nginx Only, No Apache)
 If your app doesn't utilize .htaccess files, it is possible to have Nginx interact directly with PHP-FPM and bypass Apache entirely.
@@ -53,6 +54,9 @@ Installation of the following image optimisation libraries:
 #### Password Protect
 Ability to add Auth Basic to apps with in serverpilot. This is setup within the nginx app config so will work with both people using nginx + apache and nginx only
 
+#### Nginx Expires Config
+Adds in an Nginx config containing expires headers. The [config file](https://github.com/webdna/serverpilot-scripts/blob/master/nginx.expires.conf) is based on the (HTML 5 boilerplate nginx configs)[https://github.com/h5bp/server-configs-nginx]
+
 ### Roadmap
 
 - [ ] Image optimisation libraries
@@ -64,3 +68,4 @@ Ability to add Auth Basic to apps with in serverpilot. This is setup within the 
   - [x] gisicle
 - [ ] MariaDB Installation
 - [x] Password protect apps
+- [x] Nginx expires config
