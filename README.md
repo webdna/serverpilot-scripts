@@ -55,7 +55,7 @@ Installation of the following image optimisation libraries:
 Ability to add Auth Basic to apps with in serverpilot. This is setup within the nginx app config so will work with both people using nginx + apache and nginx only
 
 #### Nginx Expires Config
-Adds in an Nginx config containing expires headers. The [config file](https://github.com/webdna/serverpilot-scripts/blob/master/nginx.expires.conf) is based on the (HTML 5 boilerplate nginx configs)[https://github.com/h5bp/server-configs-nginx]
+Adds in an Nginx config containing expires headers. The [config file](https://github.com/webdna/serverpilot-scripts/blob/master/nginx.expires.conf) is based on the [HTML 5 boilerplate nginx configs](https://github.com/h5bp/server-configs-nginx)
 
 ### Roadmap
 
