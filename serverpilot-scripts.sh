@@ -85,8 +85,7 @@ if [ "$lemp" = "y" ] || [ $run_all = true ]; then
       (eval "mv ${app_vhost_dir}/main.conf ${app_vhost_dir}/main.conf.bak")
       
       show_info "Creating new nginx conf..."
-      wget -O nginx.app.conf $nginx_conf_url
-      (eval "mv nginx.app.conf ${app_vhost_dir}/main.custom.conf")
+      (eval "wget --no-cache -O ${app_vhost_dir}/main.custom.conf ${nginx_conf_url}")
       
       show_info "Restarting nginx..."
       service nginx-sp restart
@@ -288,7 +287,7 @@ if [ "$expires_nginx" = "y" ] || [ $run_all = true ]; then
     else
   
       show_info "Creating expires nginx conf..."
-      (eval "wget -O ${expires_conf_file} ${nginx_expires_conf_url}")
+      (eval "wget --no-cache -O ${expires_conf_file} ${nginx_expires_conf_url}")
       
       show_info "Restarting nginx..."
       service nginx-sp restart
