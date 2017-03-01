@@ -74,7 +74,12 @@ if [ "$lemp" = "y" ] || [ $run_all = true ]; then
   
   echo -n "What is the appname? : "
   read appname
-  if [ -n "$appname" ] && [ -e "/etc/nginx-sp/vhosts.d/${appname}.d" ]; then
+  
+  sysuser_default="serverpilot"
+  echo -n "What is the system user (normally serverpilot)? [default: serverpilot] : "
+  read sysuser
+  system_user="${sysuser:-$sysuser_default}"
+  if [ -n "$appname" ] && [ -n "$system_user" ] && [ -e "/etc/nginx-sp/vhosts.d/${appname}.d" ]; then
     
     app_vhost_dir="/etc/nginx-sp/vhosts.d/${appname}.d"
     
@@ -86,6 +91,10 @@ if [ "$lemp" = "y" ] || [ $run_all = true ]; then
       
       show_info "Creating new nginx conf..."
       (eval "wget --no-cache -O ${app_vhost_dir}/main.custom.conf ${nginx_conf_url}")
+      
+      show_info "Inserting system user and appanme"
+      (eval "sed -ie 's/SYSUSER/${system_user}/g' ${app_vhost_dir}/main.custom.conf")
+      (eval "sed -ie 's/APPNAME/${appname}/g' ${app_vhost_dir}/main.custom.conf")
       
       show_info "Restarting nginx..."
       service nginx-sp restart
