@@ -93,8 +93,8 @@ if [ "$lemp" = "y" ] || [ $run_all = true ]; then
       (eval "wget --no-cache -O ${app_vhost_dir}/main.custom.conf ${nginx_conf_url}")
       
       show_info "Inserting system user and appanme"
-      (eval "sed -ie 's/SYSUSER/${system_user}/g' ${app_vhost_dir}/main.custom.conf")
-      (eval "sed -ie 's/APPNAME/${appname}/g' ${app_vhost_dir}/main.custom.conf")
+      (eval "sed -i -e 's/SYSUSER/${system_user}/g' ${app_vhost_dir}/main.custom.conf")
+      (eval "sed -i -e 's/APPNAME/${appname}/g' ${app_vhost_dir}/main.custom.conf")
       
       show_info "Restarting nginx..."
       service nginx-sp restart
