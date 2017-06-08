@@ -59,6 +59,7 @@ Adds in an Nginx config containing expires headers. The [config file](https://gi
 
 ### Roadmap
 
+- [ ] [nginx bad bots](https://github.com/mariusv/nginx-badbot-blocker)
 - [ ] Image optimisation libraries
   - [x] jpegoptim
   - [ ] mozjpeg
