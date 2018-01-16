@@ -50,6 +50,7 @@ Installation of the following image optimisation libraries:
 - optipng
 - pngcrush
 - pngquant
+- webp
 
 #### Password Protect
 Ability to add Auth Basic to apps with in serverpilot. This is setup within the nginx app config so will work with both people using nginx + apache and nginx only
@@ -67,6 +68,7 @@ Adds in an Nginx config containing expires headers. The [config file](https://gi
   - [x] pngcrush
   - [x] pngquant
   - [x] gisicle
+  - [x] webp
 - [ ] MariaDB Installation
 - [x] Password protect apps
 - [x] Nginx expires config
