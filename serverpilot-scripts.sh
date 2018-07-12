@@ -113,7 +113,7 @@ fi
 # === Install Certbot ===
 if [[ $run_all = false ]]; then
   echo -n "Install Certbot (for Lets Encrypt)? (y/n) [default: n] : "
-  read cartbot
+  read certbot
 fi
 
 if [ "$certbot" = "y" ] || [ $run_all = true ]; then
