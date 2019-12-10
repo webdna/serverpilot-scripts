@@ -56,7 +56,7 @@ if [[ "$USER" != "root" ]]; then
 fi
 
 # === Get PHP Version ===
-echo -n "What verion of PHP are you running? e.g. 5.6, 7.0, 7.1: "
+echo -n "What verion of PHP are you running? e.g. X.X: "
 read php_version
 if [ -n "$php_version" ]; then
   echo "PHP Version: $php_version"
